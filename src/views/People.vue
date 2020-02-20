@@ -1,10 +1,12 @@
 <template>
-    <h1>xx的存档</h1>
+    <UserPage :id="$route.params.id"/>
 </template>
 
 <script>
+  import UserPage from "@/components/user/UserPage";
   export default {
-    name: "People"
+    name: "People",
+    components: {UserPage}
   }
 </script>
 
