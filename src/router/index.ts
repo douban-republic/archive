@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import People from '../views/People.vue';
+import UserDataFetching from '../views/UserDataFetching.vue';
 
 Vue.use(VueRouter);
 
@@ -20,6 +21,11 @@ const routes = [
     path: '/people/:id',
     name: '个人存档',
     component: People,
+  },
+  {
+    path: '/people/:id/backup',
+    name: '备份用户数据',
+    component: UserDataFetching,
   },
 ];
 

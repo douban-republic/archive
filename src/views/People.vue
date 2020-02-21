@@ -1,5 +1,8 @@
 <template>
-    <UserPage :id="$route.params.id"/>
+    <div>
+        <UserPage :id="$route.params.id"/>
+        <router-link :to="'/people/' + $route.params.id + '/backup'">重新备份</router-link>
+    </div>
 </template>
 
 <script>
