@@ -16,10 +16,12 @@ import { DoubanBookStatus } from "@/interfaces/douban";
 
 <script lang="ts">
   import Vue from "vue";
-  import { fetchBookDataById } from "@/utils/douban/request";
+  import { fetchBookDataById, simplifyUserBookData } from "@/utils/douban/request";
   import { DoubanBookStatus, IDoubanUserBookItem } from "@/interfaces/douban";
   import { saveAs } from 'file-saver';
+  import { map } from 'lodash';
   import UiButton from '@/ui-components/button/button.vue';
+  import { IUserBookItem } from "@/interfaces/backup";
 
   const MAX_REQUEST = 20;
   // 最大每页100
@@ -36,7 +38,7 @@ import { DoubanBookStatus } from "@/interfaces/douban";
         done: false,
         currentPage: 0,
         total: -1,
-        collections: [] as IDoubanUserBookItem[],
+        collections: [] as IUserBookItem[],
       };
     },
     methods: {
@@ -62,7 +64,7 @@ import { DoubanBookStatus } from "@/interfaces/douban";
           if (this.total === -1) {
             this.total = total;
           }
-          this.collections = this.collections.concat(collections);
+          this.collections = this.collections.concat(map(collections, simplifyUserBookData));
         }
         this.isLoading = false;
         this.done = true;

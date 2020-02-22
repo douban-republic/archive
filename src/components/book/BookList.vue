@@ -2,13 +2,18 @@
   <ul class="book-list">
     <li v-for="collection in collections" class="collection-item">
       <div>
-        <a target="_blank" :href="collection.book.alt"><span class="title">{{ collection.book.title }}</span></a>
+        <a target="_blank" :href="collection.url"><span class="title">{{ collection.book_title }}</span></a>
         <span v-if="collection.rating">
-          <ui-rating :rate="parseInt(collection.rating.value, 10)"></ui-rating>
+          <ui-rating :rate="collection.rating"></ui-rating>
         </span>
         <span class="meta">/ {{ collection.updated }}</span>
       </div>
-      <div v-if="collection.comment" class="comment">{{ collection.comment }}</div>
+      <div v-if="collection.comment || (collection.tags && collection.tags.length)" class="comment">
+        <span>{{ collection.comment }}</span>
+        <div v-if="collection.tags && collection.tags.length">
+          (<span v-for="tag in collection.tags">/ {{ tag }} /</span>)
+        </div>
+      </div>
     </li>
   </ul>
 </template>
@@ -28,15 +33,19 @@
 
 <style scoped lang="less">
   .book-list {
-    text-align: left;
     li {
-      margin-bottom: 12px;
+      padding: 12px 12px 20px 12px;
+    }
+    li:nth-child(2n) {
+      background-color: rgba(0, 0, 0, 0.042);
+      border-radius: 8px;
     }
   }
   .collection-item {
     a {
       text-decoration: none;
       color: #3377aa;
+      border-radius: 4px;
       &:hover {
         background-color: #3377aa;
         color: #fff;

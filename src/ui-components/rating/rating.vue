@@ -1,6 +1,6 @@
 <template>
   <span class="rating">
-    <span v-for="n in rate" :key="n">⭐️</span>
+    <span v-for="n in rate">⭐️</span>
   </span>
 </template>
 

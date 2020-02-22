@@ -1,6 +1,7 @@
 import { FETCH_USER_BOOK_COLLECTIONS } from '@/store/actions.type';
 import { SET_USER_BOOK_COLLECTIONS } from '@/store/mutations.type';
 import { CollectionService } from '@/services/collection.service';
+import { IUserBookItem } from '@/interfaces/backup';
 
 const initialState = {};
 
@@ -20,7 +21,10 @@ export const actions = {
 
 export const mutations = {
   // tslint:disable-next-line:no-shadowed-variable
-  [SET_USER_BOOK_COLLECTIONS](state: any, { id, collections }: any) {
+  [SET_USER_BOOK_COLLECTIONS](state: any, { id, collections }: {
+    id: string,
+    collections: IUserBookItem[],
+  }) {
     if (!state[id]) {
       state[id] = {};
     }

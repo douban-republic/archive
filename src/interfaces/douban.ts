@@ -36,7 +36,7 @@ export interface IDoubanBook {
   catalog?: string;
   pages: string;
   images?: IDoubanImage;
-  alt?: string;
+  alt: string;
   id: string;
   publisher?: string;
   isbn10?: string;
@@ -69,6 +69,7 @@ export interface IDoubanUserBookItem {
   user_id: string;
   book_id: string;
   id: number;
+  tags?: string[];
   rating?: IDoubanUserRating;
   book: IDoubanBook;
 }
