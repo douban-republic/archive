@@ -11,14 +11,13 @@
     <div v-else class="nothing">
       <p>这个人什么都没有留下</p>
     </div>
-    <div class="footer">
+    <div class="footer" v-if="!isProd">
       <router-link :to="'/people/' + $route.params.id + '/backup'"> &gt; 重新备份</router-link>
     </div>
   </div>
 </template>
 
 <script>
-  import UserPage from '@/components/user/UserPage.vue';
   import BookList from '@/components/book/BookList.vue';
   import store from "@/store";
   import { FETCH_USER_BOOK_COLLECTIONS } from "@/store/actions.type";
@@ -26,8 +25,12 @@
 
   export default {
     name: 'People',
+    data() {
+      return {
+        isProd: process.env.NODE_ENV === 'production'
+      };
+    },
     components: {
-      UserPage,
       BookList,
     },
     beforeRouteEnter(to, from, next) {

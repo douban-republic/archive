@@ -19,13 +19,3 @@ export default class HelloWorld extends Vue {
 }
 </script>
 
-<style scoped lang="less">
-  a {
-    color: #072;
-  }
-  .hello {
-    width: 600px;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-</style>

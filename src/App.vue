@@ -36,7 +36,7 @@
   }
 
   #nav {
-    padding: 30px;
+    padding: 12px;
     text-align: right;
 
     a {

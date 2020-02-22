@@ -13,8 +13,8 @@ export const actions = {
       id,
       collections,
     };
-    console.log(userBookCollections);
     context.commit(SET_USER_BOOK_COLLECTIONS, userBookCollections);
+    return userBookCollections;
   },
 };
 

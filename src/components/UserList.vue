@@ -1,7 +1,9 @@
 <template>
   <ul>
     <li v-for="user in users">
-      <router-link :to="'/people/' + user.id">{{ user.name }}</router-link>
+      <router-link :to="'/people/' + user.id">
+        {{ user.name }} <small>( {{ user.id }} )</small>
+      </router-link>
     </li>
   </ul>
 </template>
@@ -9,7 +11,6 @@
 <script lang="ts">
   import { Component, Vue } from "vue-property-decorator";
   import { USER_LIST, UserBasicInfo } from "@/constant/users";
-
 
   @Component
   export default class UserList extends Vue {
@@ -22,12 +23,11 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-wrap: wrap;
 
     li {
+      margin-bottom: 8px;
       a {
-        display: block;
+        display: inline-block;
         padding: 0 12px;
         line-height: 24px;
         color: #072;
