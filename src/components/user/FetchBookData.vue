@@ -50,7 +50,7 @@ import { DoubanBookStatus } from "@/interfaces/douban";
       save() {
         if (this.collections.length > 0) {
           const file = new File([JSON.stringify(this.collections)],
-            'collect.json',
+            `user.${this.id}.book.collect.json`,
             { type: 'application/json;charset=utf-8' });
           saveAs(file);
         } else {

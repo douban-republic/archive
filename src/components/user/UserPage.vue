@@ -1,22 +1,22 @@
 <template>
   <div>
     <h1>{{ id }} 的存档</h1>
-    <BookList/>
+
   </div>
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from "vue-property-decorator";
+  import Vue from 'vue';
   import BookList from "../book/BookList.vue";
 
-  @Component({
+  const UserPage = Vue.extend({
+    props: ["id"],
     components: {
       BookList,
     },
-  })
-  export default class UserPage extends Vue {
-    @Prop() private id!: string;
-  }
+  });
+
+  export default UserPage;
 </script>
 
 <style scoped>

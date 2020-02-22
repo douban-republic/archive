@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link>
+      <router-link to="/">首页</router-link>
       |
-      <router-link to="/about">About</router-link>
+      <router-link to="/about">帮助</router-link>
     </div>
     <router-view/>
   </div>
@@ -14,7 +14,6 @@
     font-family: Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
     color: #2c3e50;
     width: 640px;
     max-width: 100%;
@@ -27,16 +26,23 @@
     padding: 0;
   }
 
+  a {
+    color: #072;
+    text-decoration: none;
+    padding: 8px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   #nav {
     padding: 30px;
+    text-align: right;
 
     a {
-      font-weight: bold;
       color: #072;
-
+      text-decoration: none;
       &.router-link-exact-active {
-        color: #494949;
-        text-decoration: none;
         cursor: default;
       }
     }

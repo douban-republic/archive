@@ -1,42 +1,63 @@
 <template>
-    <ul>
-        <li v-for="book in books">
-            {{ book.title }}
-        </li>
-    </ul>
+  <ul class="book-list">
+    <li v-for="collection in collections" class="collection-item">
+      <div>
+        <a target="_blank" :href="collection.book.alt"><span class="title">{{ collection.book.title }}</span></a>
+        <span v-if="collection.rating">
+          <ui-rating :rate="parseInt(collection.rating.value, 10)"></ui-rating>
+        </span>
+        <span class="meta">/ {{ collection.updated }}</span>
+      </div>
+      <div v-if="collection.comment" class="comment">{{ collection.comment }}</div>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts">
-  import { Component, Vue } from "vue-property-decorator";
+  import Vue from 'vue';
+  import UiRating from '@/ui-components/rating/rating.vue';
 
-  interface UserBookInfo {
-    title: string;
-    subtitle?: string;
-    pub_meta: string;
-    collect_date: string;
-    rate: number;
-    tags: string[];
-    link: string;
-    subject: string;
-    comment?: string;
-  }
-
-  @Component
-  export default class BookList extends Vue {
-    public books: UserBookInfo[] = [{
-      subject: '26832406',
-      title: 'Idea Makers',
-      subtitle: 'Personal Perspectives on the Lives & Ideas of Some Notable People',
-      pub_meta: 'Stephen Wolfram / Wolfram Media, Inc. / 2016-7-7 / USD 22.95',
-      collect_date: "2016-07-22",
-      rate: 5,
-      tags: ['English'],
-      link: 'https://book.douban.com/subject/26832406/',
-      comment: 'Steven Wolfram给Mathematica、NKS有个人或精神关系的前人写的学术传记和个人唁文，或者说着迷于"简单规则，复杂现象"的松散的一群人的精神族谱。每篇都像是NKS的软文，但这是他一辈子的主线，是诚恳的。'
-    }];
-  }
+  const BookList = Vue.extend({
+    props: ["collections"],
+    components: {
+      UiRating,
+    }
+  });
+  export default BookList;
 </script>
 
-<style scoped>
-
+<style scoped lang="less">
+  .book-list {
+    text-align: left;
+    li {
+      margin-bottom: 12px;
+    }
+  }
+  .collection-item {
+    a {
+      text-decoration: none;
+      color: #3377aa;
+      &:hover {
+        background-color: #3377aa;
+        color: #fff;
+      }
+    }
+    .title {
+      font-size: 14px;
+    }
+    .meta {
+      font-size: 12px;
+      color: #696969;
+    }
+    .comment {
+      font-size: 11px;
+      color: #696969;
+      font-style: italic;
+      border: 1px solid #ccc;
+      width: 80%;
+      margin: 8px 0 0 24px;
+      padding: 4px;
+      border-radius: 4px;
+    }
+  }
 </style>
