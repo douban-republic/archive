@@ -5,7 +5,7 @@
     <p>请不要频繁使用该功能。
       整个备份功能建立在 <a href="https://github.com/zce" target="_blank">zce</a> 同学架设的豆瓣API代理服务上，API请求数有限制。</p>
     <p>豆瓣API代理详情请见 <a href="https://douban.uieee.com/" target="_blank">zce的网站。</a></p>
-    <FetchBookData id="ahbei"></FetchBookData>
+    <FetchBookData :id="$route.params.id"></FetchBookData>
   </div>
 </template>
 

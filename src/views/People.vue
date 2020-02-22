@@ -5,7 +5,7 @@
       <small>(ID: {{ user.id }})</small>
     </h1>
     <div v-if="userCollections.books.length">
-      <h2>Ta 标记过的书</h2>
+      <h2>Ta 标记过的书 <small>({{ userCollections.books.length }})</small></h2>
       <BookList :collections="userCollections.books"/>
     </div>
     <div v-else class="nothing">
@@ -57,6 +57,13 @@
       font-weight: 300;
       font-size: 14px;
       color: #999;
+    }
+  }
+  h2 {
+    font-size: 18px;
+    small {
+      font-size: 14px;
+      font-weight: 300;
     }
   }
   a {

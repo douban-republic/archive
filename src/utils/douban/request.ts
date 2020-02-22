@@ -4,7 +4,7 @@ import { DoubanBookStatus, IDoubanListResponse, IDoubanUserBookItem } from '@/in
 
 export const fetchBookDataById = (id: string, start: number, count: number, status: DoubanBookStatus)
     : Promise<IDoubanListResponse<IDoubanUserBookItem>> => {
-    return axios.get(`${DOUBAN_API_HOST}/book/user/${id}/collections?start=${start}&count=${count}&status=${status}`)
+    return axios.get(`${DOUBAN_API_HOST}/book/user/${id}/collections?start=${start * count}&count=${count}&status=${status}`)
       .then((response: AxiosResponse) => {
         return response.data;
       }).catch((error: AxiosError) => {

@@ -1,22 +1,15 @@
 import { DoubanBookStatus } from "@/interfaces/douban";
 <template>
   <div>
-    <ui-button v-on:click="fetch" :disabled="isLoading">获取数据</ui-button>
+    <ui-button v-if="!done && !isLoading" v-on:click="fetch" :disabled="isLoading">获取数据</ui-button>
     <div v-if="isLoading">
       <p>数据获取中……</p>
-      <dl>
-        <dt>当前页面</dt>
-        <dd>{{ currentPage }}</dd>
-      </dl>
+      <p>正在获取第 {{ currentPage }} 页。</p>
     </div>
     <div v-if="done">
-      <h4>数据汇总：</h4>
+      <h4>共获取已读数据： {{ collections.length }} 条</h4>
       <ui-button v-on:click="save">保存文件</ui-button>
-      <ul>
-        <li v-for="(item, index) in collections">
-          {{ item.book.title }} - {{ item.updated }}
-        </li>
-      </ul>
+      <p>文件下载后请保存在 <code>./public</code> 以及 <code>./docs</code> 各一份，请勿重命名该文件。</p>
     </div>
   </div>
 </template>
@@ -28,7 +21,7 @@ import { DoubanBookStatus } from "@/interfaces/douban";
   import { saveAs } from 'file-saver';
   import UiButton from '@/ui-components/button/button.vue';
 
-  const MAX_REQUEST = 2;
+  const MAX_REQUEST = 20;
   // 最大每页100
   const PAGE_SIZE = 100;
 
