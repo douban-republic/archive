@@ -20,7 +20,7 @@
   export default {
     name: "UserList",
     data() {
-      const groupedUsers = groupBy(USER_LIST, (user: UserBasicInfo) => user.id.substr(0, 1));
+      const groupedUsers = groupBy(USER_LIST, (user: UserBasicInfo) => user.id.substr(0, 1).toLowerCase());
       return {
         firstLetters: keys(groupedUsers),
         groupedUsers,
