@@ -12,4 +12,7 @@ export const USER_LIST: UserBasicInfo[] = [{
 }, {
   id: 'moondancer',
   name: '撕扯的微笑',
+}, {
+  id: 'Losersclub1958',
+  name: '。',
 }];
