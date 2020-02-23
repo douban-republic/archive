@@ -39,9 +39,7 @@ describe('# Douban utils', () => {
       rating: 4,
       book_title: 'test',
       url: 'http://douban.com/subject/123',
-      status: DoubanBookStatus.read,
       updated: '2020-01-01 00:00:00',
-      user_id: 'user',
       comment: 'my comment',
       tags: ['my_tag'],
     });

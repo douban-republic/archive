@@ -6,7 +6,7 @@ import { IUserBookItem } from '@/interfaces/backup';
 
 export const simplifyUserBookData = (userBookItem: IDoubanUserBookItem): IUserBookItem => {
   return {
-    ...omit(userBookItem, ['book', 'rating']),
+    ...omit(userBookItem, ['book', 'rating', 'status', 'user_id']),
     rating: parseInt(get(userBookItem, 'rating.value', 0), 10),
     book_title: userBookItem.book.title,
     url: userBookItem.book.alt,
