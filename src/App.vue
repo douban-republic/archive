@@ -44,6 +44,7 @@
       text-decoration: none;
       &.router-link-exact-active {
         cursor: default;
+        color: #494949;
       }
     }
   }
