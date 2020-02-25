@@ -20,8 +20,8 @@
 <script>
   import BookList from '@/components/book/BookList.vue';
   import store from "@/store";
-  import { FETCH_USER_BOOK_COLLECTIONS } from "@/store/actions.type";
-  import { USER_LIST } from "@/constant/users";
+  import { FETCH_USER_BOOK_COLLECTIONS, FETCH_USER_LIST } from "@/store/actions.type";
+  import { mapGetters } from "vuex";
 
   export default {
     name: 'People',
@@ -40,9 +40,20 @@
         next();
       }
     },
+    mounted() {
+      if (!this.users || this.users.length === 0) {
+        this.$store.dispatch(FETCH_USER_LIST)
+      }
+    },
     computed: {
+      ...mapGetters(['users']),
       user() {
-        return USER_LIST.find((it) => it.id === this.$route.params.id);
+        const id = this.$route.params.id;
+        const currentUser = this.users.find((it) => it.id === id);
+        return currentUser || {
+          id,
+          name: id,
+        }
       },
       userCollections() {
         return store.getters.getCollectionsByUserId(this.$route.params.id)
@@ -56,31 +67,38 @@
     font-size: 26px;
     color: #494949;
     font-weight: 900;
+
     small {
       font-weight: 300;
       font-size: 14px;
       color: #999;
     }
   }
+
   h2 {
     font-size: 18px;
+
     small {
       font-size: 14px;
       font-weight: 300;
     }
   }
+
   a {
     color: #072;
     text-decoration: none;
+
     &:hover {
       color: #fff;
       background-color: #072;
     }
   }
+
   .nothing {
     margin: 48px 0;
     color: #999;
   }
+
   .footer {
     text-align: right;
   }

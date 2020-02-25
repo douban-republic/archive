@@ -17,10 +17,10 @@ import { DoubanBookStatus } from "@/interfaces/douban";
 <script lang="ts">
   import Vue from "vue";
   import { fetchBookDataById, simplifyUserBookData } from "@/utils/douban/request";
-  import { DoubanBookStatus, IDoubanUserBookItem } from "@/interfaces/douban";
-  import { saveAs } from 'file-saver';
-  import { map } from 'lodash';
-  import UiButton from '@/ui-components/button/button.vue';
+  import { DoubanBookStatus } from "@/interfaces/douban";
+  import { saveAs } from "file-saver";
+  import { map } from "lodash";
+  import UiButton from "@/ui-components/button/button.vue";
   import { IUserBookItem } from "@/interfaces/backup";
 
   const MAX_REQUEST = 20;
@@ -46,10 +46,10 @@ import { DoubanBookStatus } from "@/interfaces/douban";
         if (this.collections.length > 0) {
           const file = new File([JSON.stringify(this.collections)],
             `user.${this.id}.book.collect.json`,
-            { type: 'application/json;charset=utf-8' });
+            { type: "application/json;charset=utf-8" });
           saveAs(file);
         } else {
-          alert('你没有可保存的数据！');
+          alert("你没有可保存的数据！");
         }
       },
       async fetch() {
